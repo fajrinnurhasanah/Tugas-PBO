@@ -1,5 +1,14 @@
 # TUGAS NO 1 (PROJECT PERKENALAN)
 
+
+Dalam studi kasus perkenalan:
+Class: Perkenalan.
+Object: Data orang yang melakukan perkenalan.
+Attributes: Nama, umur, dan jurusan.
+Methods: Fungsi untuk menampilkan perkenalan.
+Parameters: Data yang dimasukkan ke dalam method.
+
+
     # Class PasienTHT
     class PasienTHT:
 
@@ -133,7 +142,7 @@
 OUTPUT:
 ====================================
  PERCAKAPAN PASIEN DI POLI THT
- ====================================
+====================================
     Rumah Sakit: RS Sari asih
     Ruangan: Poli THT
     
@@ -178,10 +187,55 @@ OUTPUT:
     Kedua pasien selesai menjalani proses pemeriksaan.
     ====================================
 
+#TUGAS NO 2 (PROJECT CONSTRUCTOR, VALIDATION SERTA DECORATOR)
+ 
+• Constructor adalah fungsi khusus __init__() yang dijalankan secara otomatis ketika objek dibuat.
+• Validation adalah proses memeriksa data agar sesuai dengan ketentuan.
+• Decorator adalah fungsi yang digunakan untuk menambahkan fungsi atau perilaku pada method tanpa mengubah isi method aslinya.
 
 
+    # Membuat Decorator
+    def cek_proses(func):
+        def wrapper(self):
+            print("Proses perkenalan dimulai...")
+            func(self)
+            print("Proses perkenalan selesai.")
+        return wrapper
+    
+    
+    class Mahasiswa:
+
+    # Constructor dan Validation
+    def __init__(self, nama, umur):
+
+        if not isinstance(nama, str) or not nama.strip():
+            raise ValueError("Nama harus diisi!")
+
+        if not isinstance(umur, int) or umur <= 0:
+            raise ValueError("Umur harus berupa angka positif!")
+
+        self.nama = nama
+        self.umur = umur
+
+    # Menggunakan Decorator
+    @cek_proses
+    def tampilkan_data(self):
+        print("Nama:", self.nama)
+        print("Umur:", self.umur)
 
 
+    # Membuat objek
+    mhs1 = Mahasiswa("Fajrin", 20)
+    
+    # Menampilkan data
+    mhs1.tampilkan_data()
+
+
+    OUTPUT:
+    Proses perkenalan dimulai...
+    Nama: Fajrin
+    Umur: 20
+    Proses perkenalan selesai.
 
 
 
